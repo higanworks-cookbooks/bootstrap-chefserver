@@ -17,7 +17,21 @@ apt_repository "opscode" do
   key "83EF826A"
 end
 
-%w(ohai chef).each do |w|
+# cookbook apt has bug ?
+# apt-get update notifies does not work.
+# here is work around.
+execute "apt-get update" do
+  command "apt-get update"
+  ignore_failure true
+  action :run
+end
+
+file "/etc/apt/sources.list.d/opscode.update-once.list" do
+  action :create_if_missing
+  notifies :run, resources(:execute => "apt-get-update"), :immediately
+end
+
+%w(ohai chef chef-server).each do |w|
   package w do
     action :install
   end

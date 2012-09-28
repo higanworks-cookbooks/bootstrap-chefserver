@@ -11,7 +11,7 @@ include_recipe "apt"
 
 apt_repository "opscode" do
   uri "http://apt.opscode.com"
-  distribution node.lsb.codename
+  distribution [node.lsb.codename, "-0.10"].join
   components ["universe"]
   keyserver "keyserver.ubuntu.com"
   key "83EF826A"

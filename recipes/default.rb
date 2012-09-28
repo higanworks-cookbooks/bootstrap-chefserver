@@ -39,6 +39,7 @@ script "configure dpkgs" do
   chef-solr chef-solr/amqp_password password #{apmq_password}
   chef-server-webui chef-server-webui/admin_password password p@ssword
   EOF
+
   EOH
   not_if File.exist?("/etc/apt/sources.list.d/opscode.update-once.list")
 end

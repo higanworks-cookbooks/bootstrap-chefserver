@@ -36,3 +36,8 @@ end
     action :install
   end
 end
+
+
+%w(chef-server chef-server-webui chef-solr).each do |w|
+  service w
+end

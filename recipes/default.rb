@@ -29,12 +29,14 @@ execute "apt-get update" do
   action :run
 end
 
+apmq_password = secure_password
+
 script "configure dpkgs" do
   interpreter "bash"
   code <<-EOH
   cat <<EOF | debconf-set-selections
   chef chef/chef_server_url string http://#{node.ipaddress}:4000
-  chef-solr chef-solr/amqp_password password #{secure_password}
+  chef-solr chef-solr/amqp_password password #{apmq_password}
   chef-server-webui chef-server-webui/admin_password password p@ssword
   EOF
   EOH

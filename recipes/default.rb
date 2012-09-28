@@ -34,13 +34,13 @@ apmq_password = secure_password
 script "configure dpkgs" do
   interpreter "bash"
   code <<-EOH
-  cat <<-EOF | debconf-set-selections
-  chef chef/chef_server_url string http://#{node.ipaddress}:4000
-  chef-solr chef-solr/amqp_password password #{apmq_password}
-  chef-server-webui chef-server-webui/admin_password password p@ssword
-  EOF
+cat <<EOF | debconf-set-selections
+chef chef/chef_server_url string http://#{node.ipaddress}:4000
+chef-solr chef-solr/amqp_password password #{apmq_password}
+chef-server-webui chef-server-webui/admin_password password p@ssword
+EOF
 
-  EOH
+EOH
   not_if File.exist?("/etc/apt/sources.list.d/opscode.update-once.list")
 end
 

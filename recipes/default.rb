@@ -41,7 +41,7 @@ chef-server-webui chef-server-webui/admin_password password p@ssword
 EOF
 
 EOH
-  not_if File.exist?("/etc/apt/sources.list.d/opscode.update-once.list")
+  not_if { File.exist?("/etc/apt/sources.list.d/opscode.update-once.list") }
 end
 
 file "/etc/apt/sources.list.d/opscode.update-once.list" do

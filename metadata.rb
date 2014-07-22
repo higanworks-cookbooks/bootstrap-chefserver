@@ -1,3 +1,4 @@
+name             'bootstrap-chefserver'
 maintainer       "HiganWorks LLC"
 maintainer_email "sawanoboriyu@higanworks.com"
 license          "MIT"
